@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1090056628059",
+    "project_id": "appflorideas",
+    "storage_bucket": "appflorideas.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090056628059:android:fc75ef3989338697d7dc7e",
+        "android_client_info": {
+          "package_name": "com.practica.florideasapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-rnvJ7ke39u2LahBTlK3tW2Q34lpdlWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
