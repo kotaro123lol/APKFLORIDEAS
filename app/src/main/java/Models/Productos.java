@@ -8,9 +8,7 @@ public class Productos {
     private String Stock;
     private String RutaImagen;
 
-    // Constructor vacío necesario para Firebase
     public Productos() {
-        // Este constructor debe estar presente
     }
 
     public Productos(String nombre, String descripcion, double precio, int stock, String rutaImagen) {

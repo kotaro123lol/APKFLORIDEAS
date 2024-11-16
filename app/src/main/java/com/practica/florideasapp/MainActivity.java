@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
         txtContrasena = findViewById(R.id.txtClave);
         btnIngresar = findViewById(R.id.btnIngresar);
 
-        // Inicializa Firebase
         iniciarFirebase();
 
         btnIngresar.setOnClickListener(this::onIngresar);
     }
+
     public void onIngresar(View view) {
         String correo = txtCorreo.getText().toString().trim();
         String contrasena = txtContrasena.getText().toString().trim();
@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Por favor, ingrese correo y contraseña", Toast.LENGTH_SHORT).show();
             return;
         }
-        // Llamar a la función para validar el cliente
         validarCliente(correo, contrasena);
     }
+
 
     private void validarCliente(String correo, String contrasena) {
         Log.d("LoginDebug", "Correo ingresado: " + correo);
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         try {
                             if (snapshot.exists()) {
-                                Log.d("LoginDebug", "Correo encontrado en la base de datos.");
+                                Log.d("LoginDebug", "Correo encontrado registrado.");
                                 boolean contrasenaCorrecta = false;
 
                                 for (DataSnapshot data : snapshot.getChildren()) {
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(MainActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
                                 }
                             } else {
-                                Log.d("LoginDebug", "Correo no encontrado en la base de datos.");
+                                Log.d("LoginDebug", "Correo no encontrado registrado.");
                                 Toast.makeText(MainActivity.this, "Correo no registrado", Toast.LENGTH_SHORT).show();
                             }
                         } catch (Exception e) {

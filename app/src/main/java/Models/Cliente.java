@@ -10,9 +10,7 @@ public class Cliente {
     private String correo;
     private String contrasena;
 
-    // Constructor vacío necesario para Firebase
     public Cliente() {
-        // Este constructor debe estar presente
     }
 
 
