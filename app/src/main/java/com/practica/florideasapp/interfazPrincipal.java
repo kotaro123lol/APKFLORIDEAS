@@ -38,20 +38,17 @@ public class interfazPrincipal extends AppCompatActivity {
 
         String correoCliente = getIntent().getStringExtra("correoCliente");
         if (correoCliente != null) {
-            // Muestra el correo en los logs o úsalo según tus necesidades
             Log.d("interfazPrincipal", "Correo recibido: " + correoCliente);
             Toast.makeText(this, "Bienvenido " + correoCliente, Toast.LENGTH_SHORT).show();
         } else {
             Log.d("interfazPrincipal", "No se recibió correoCliente");
         }
 
-        // Inicializa Firebase Database
-        databaseReference = FirebaseDatabase.getInstance().getReference("Productos"); // Asegúrate de que este sea el nombre correcto
+        databaseReference = FirebaseDatabase.getInstance().getReference("Productos");
 
         recyclerView = findViewById(R.id.recyclerViewProductos);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Cargar productos desde Firebase
         cargarProductos();
     }
 
