@@ -25,7 +25,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     private List<Productos> cartItems;
     private Cart cart;
 
-    // Constructor del adaptador
     public CartAdapter(Context context, List<Productos> cartItems) {
         this.context = context;
         this.cartItems = cartItems;
@@ -40,11 +39,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         this.listener = listener;
     }
 
-
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflar el layout del item del carrito
         View view = LayoutInflater.from(context).inflate(R.layout.item_cart, parent, false);
         return new CartViewHolder(view);
     }
@@ -56,9 +53,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.nombreProducto.setText(producto.getNombre());
         holder.precioProducto.setText("S/ " + producto.getPrecio());
 
-        // Cargar la imagen del producto usando Glide
         Glide.with(context)
-                .load(producto.getRutaImagen()) // Asumiendo que este método devuelve la URL de la imagen
+                .load(producto.getRutaImagen())
                 .into(holder.imagenProducto);
 
         holder.btnRemoveFromCart.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +72,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 Toast.makeText(context, "Producto eliminado del carrito", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
@@ -86,8 +81,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
         TextView nombreProducto, precioProducto;
-        ImageView imagenProducto; // Para mostrar la imagen del producto
-        Button btnRemoveFromCart; // Botón para eliminar del carrito
+        ImageView imagenProducto;
+        Button btnRemoveFromCart;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -57,10 +57,8 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        // Obtener la instancia única del carrito
         cart = Cart.getInstance();
 
-        // Inicializar las vistas
         recyclerViewCart = findViewById(R.id.recyclerViewCart);
         textTotalPrice = findViewById(R.id.textTotalPrice);
         btnConfirmPurchase = findViewById(R.id.btnConfirmPurchase);
@@ -88,8 +86,6 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
-
-        // 2. Mostrar el precio total
         textTotalPrice.setText("Total: S/ " + cart.getTotalPrice());
 
         PaymentConfiguration.init(this,SECRET_PUBLIC);
@@ -110,8 +106,6 @@ public class CartActivity extends AppCompatActivity {
                 actualizarTotal(cart.getTotalPrice());
             }
         });
-
-
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,"https://api.stripe.com/v1/customers",
                 new Response.Listener<String>() {
@@ -289,16 +283,8 @@ private void PaymentFlow() {
     }
 }
 
-
-    private void confirmarCompra() {
-        // Aquí puedes implementar la lógica para actualizar el stock en la base de datos
-        cart.clearCart(); // Vacía el carrito después de confirmar la compra
-        Toast.makeText(this, "Compra confirmada", Toast.LENGTH_SHORT).show();
-        finish(); // Cierra la actividad del carrito
-    }
-    // Método para actualizar el total
     public void actualizarTotal(double totalPrice) {
-        textTotalPrice.setText("Total: S/ " + totalPrice); // Actualiza el precio total en la UI
+        textTotalPrice.setText("Total: S/ " + totalPrice);
     }
 
 }
