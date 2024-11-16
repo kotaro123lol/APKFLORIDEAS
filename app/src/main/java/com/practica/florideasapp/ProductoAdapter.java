@@ -25,13 +25,13 @@ import Models.Productos;
 public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHolder> implements Filterable {
     private Context context;
     private List<Productos> listaProductos;
-    private List<Productos> productosListFull; // Lista completa para filtrado
+    private List<Productos> productosListFull;
 
 
     public ProductoAdapter(Context context, List<Productos> listaProductos) {
         this.context = context;
         this.listaProductos = listaProductos;
-        this.productosListFull = new ArrayList<>(listaProductos); // Copia la lista completa para filtrado
+        this.productosListFull = new ArrayList<>(listaProductos);
     }
 
     @NonNull
@@ -54,7 +54,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
                 .load(producto.getRutaImagen())
                 .into(holder.imagenProducto);
 
-        // Configuración del botón para añadir al carrito
         holder.btnAddCarrito.setOnClickListener(v -> {
             Cart.getInstance().addItem(producto); // Añadir al carrito
             Toast.makeText(context, producto.getNombre() + " añadido al carrito", Toast.LENGTH_SHORT).show();
@@ -104,8 +103,8 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombreProducto, precioProducto, stockProducto, descripcionProducto;
-        ImageView imagenProducto; // Para mostrar la imagen del producto
-        Button btnAddCarrito; // Referencia al botón "Añadir al carrito"
+        ImageView imagenProducto;
+        Button btnAddCarrito;
 
         public ViewHolder(View itemView) {
             super(itemView);
