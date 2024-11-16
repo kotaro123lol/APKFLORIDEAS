@@ -85,7 +85,7 @@ public class interfazPrincipal extends AppCompatActivity {
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
         androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
-        searchView.setQueryHint("Buscar productos...");
+        searchView.setQueryHint("Buscar productos ...");
         searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -95,6 +95,7 @@ public class interfazPrincipal extends AppCompatActivity {
             }
 
             @Override
+
             public boolean onQueryTextChange(String newText) {
                 if (newText.isEmpty()) {
                     cargarProductos();
@@ -108,14 +109,13 @@ public class interfazPrincipal extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.cart) {  // Aquí se utiliza el ID constante
+        if (item.getItemId() == R.id.cart) {
             Intent intent = new Intent(this, CartActivity.class);
             startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     private void searchProductos(String nombre) {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -132,7 +132,7 @@ public class interfazPrincipal extends AppCompatActivity {
                     productoAdapter = new ProductoAdapter(interfazPrincipal.this, listaProductos);
                     recyclerView.setAdapter(productoAdapter);
                 } else {
-                    Toast.makeText(interfazPrincipal.this, "No se encontraron productos.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(interfazPrincipal.this, "No se encontraron productos con ese nombre", Toast.LENGTH_SHORT).show();
                 }
             }
 
