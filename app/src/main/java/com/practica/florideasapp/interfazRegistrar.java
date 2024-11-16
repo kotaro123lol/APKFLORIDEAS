@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class interfazRegistrar extends AppCompatActivity {
     EditText txtNombre, txtCorreo, txtContraseña, txtApellidos, txtDNI, txtDireccion, txtTelefono;
-    DatabaseReference databaseReference; // Asegúrate de usar esta referencia
+    DatabaseReference databaseReference;
     Button btnRegistrar;
     FirebaseDatabase firebase;
 
@@ -24,7 +24,7 @@ public class interfazRegistrar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ly_interfazregistro);
 
-        iniciarFirebase(); // Inicializa Firebase
+        iniciarFirebase();
         txtNombre = findViewById(R.id.txtNombres);
         txtApellidos = findViewById(R.id.txtApellidos);
         txtDNI = findViewById(R.id.txtDNI);
@@ -54,7 +54,6 @@ public class interfazRegistrar extends AppCompatActivity {
         String correo = txtCorreo.getText().toString().trim();
         String contrasena = txtContraseña.getText().toString().trim();
 
-        // Validación de campos vacíos
         if (nombres.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
             Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
             return;
@@ -62,11 +61,10 @@ public class interfazRegistrar extends AppCompatActivity {
 
         Cliente cliente = new Cliente(id, nombres, apellidos, dni, direccion, telefono, correo, contrasena);
 
-        // Usa la referencia correcta para la base de datos
         databaseReference.child("Clientes").child(id).setValue(cliente)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(interfazRegistrar.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                    finish(); // Termina la actividad
+                    finish();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(interfazRegistrar.this, "Error en el registro", Toast.LENGTH_SHORT).show();
@@ -76,7 +74,7 @@ public class interfazRegistrar extends AppCompatActivity {
     private void iniciarFirebase() {
         FirebaseApp.initializeApp(this);
         firebase = FirebaseDatabase.getInstance();
-        databaseReference = firebase.getReference(); // Referencia a la raíz de la base de datos
+        databaseReference = firebase.getReference();
     }
 
     private boolean validarCajasTexto() {
